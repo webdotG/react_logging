@@ -9,13 +9,13 @@ const Form = ({title, handleClick}) =>{
       <input
         type="email"
         value={email}
-        onChange={(evt) => setEmail.evt.target.value}
+        onChange={(e) => setEmail(e.target.value)}
         placeholder="email"
       />
       <input
         type="password"
         value={pass}
-        onChange={(evt) => setPass.evt.target.value}
+        onChange={(e) => setPass(e.target.value)}
         placeholder="password"  
       />  
       <button

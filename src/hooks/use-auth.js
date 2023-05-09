@@ -14,3 +14,5 @@ function useAuth () {
     id,
   }
 }
+
+export {useAuth}

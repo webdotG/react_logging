@@ -1,18 +1,25 @@
 import Form from "./Form"
 import { useDispatch } from "react-redux"
-import { setUser } from "store/slices/userSlice"
+import { setUser } from "../store/slices/userSlice"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-
+import {useNavigate} from 'react-router-dom'
 
 const SingUp = () => {
-
-  
   const dispatch = useDispatch()
+  const push = useNavigate()
 
   const handleRegister = (email, password) => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
-      .then(console.log)
+      .then(({user}) => {
+        console.log(user)
+        dispatch(setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.accesToken,
+        }))
+        push('/')
+      })
       .catch(console.error)
   }  
 
